@@ -1,0 +1,64 @@
+<h1 *ngIf="isVisible; else condicaoFalsa">
+  {{nome}}
+</h1>
+
+<ng-template #condicaoFalsa>
+  <h1>
+    Var Falsa
+  </h1>
+</ng-template>
+
+<div [ngSwitch]="myValue">
+  <h2>
+    <span *ngSwitchCase="1">Valor 1</span>
+    <span *ngSwitchCase="2">Valor 2</span>
+    <span *ngSwitchCase="3">Valor 3</span>
+    <span *ngSwitchCase="">Padrão</span>
+  </h2>
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let item of myList">
+      <h3>
+        {{item}}
+      </h3>
+    </li>
+  </ul>
+</div>
+
+<button (click)="handleClick()">Click Me!</button>
+<br />
+<input type="text" [value]="nome" (input)="nome = $event.target.value" />
+<br />
+<input type="text" [(ngModel)]="nome">
+<br />
+<br />
+
+<select (change)="0" #minhaClasse>
+  <option value="1"> Classe 1 </option>
+  <option value="2"> Classe 2 </option>
+  <option value="3"> Classe 3 </option>
+</select>
+<div [class.classe1]="minhaClasse.value == 1" [class.classe2]="minhaClasse.value == 2" [class.classe3]="minhaClasse.value == 3"
+  [class.classeMaior1]="minhaClasse.value > 1" [style.display]="minhaClasse.value == 1 ? 'none' : 'block'">
+  Minha Classe
+</div>
+
+<br>
+
+<ul>
+  <li *ngFor="let aluno of alunos">
+    Nome: {{aluno.nome}}
+  </li>
+</ul>
+
+<input type="text" [(ngModel)]="searchText" (keyup.enter)="getProjects()" />
+
+<ul>
+  <li *ngFor="let projeto of projects">
+    Name: {{projeto.full_name}}
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
